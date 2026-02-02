@@ -6,7 +6,6 @@
     <title>GOOD CUSTOM | Premium Steering & Bodykit</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Swiper CSS (슬라이드 기능을 위해 추가) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
@@ -103,7 +102,6 @@
             backdrop-filter: blur(20px);
         }
 
-        /* Swiper Custom Navigation */
         .swiper-nav-btn {
             width: 40px;
             height: 40px;
@@ -125,14 +123,16 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--brand-green); }
+
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Navigation (Original Layout) -->
+    <!-- Navigation -->
     <nav class="fixed w-full z-[100] glass-header">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex justify-between items-center h-24">
-            <a href="#" class="flex items-center space-x-3 group">
+            <a href="#home" class="flex items-center space-x-3 group">
                 <span class="text-2xl font-speed font-black tracking-tighter uppercase">Good<span class="text-emerald-500">Custom</span></span>
             </a>
             
@@ -155,7 +155,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Original Layout) -->
+    <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-10"></div>
@@ -182,17 +182,16 @@
         </div>
     </section>
 
-    <!-- Integrated Portfolio Section (With Slides) -->
+    <!-- Portfolio Section -->
     <section id="portfolio" class="py-40 px-6 lg:px-12 max-w-[1600px] mx-auto space-y-40">
         
-        <!-- Section Header -->
         <div class="reveal mb-10">
             <span class="font-speed text-emerald-500 tracking-[0.5em] text-xs mb-4 block uppercase">Our Expertise</span>
             <h2 class="font-speed text-5xl md:text-8xl font-black italic tracking-tighter uppercase">Portfolio</h2>
             <div class="h-1 w-40 bg-emerald-700 mt-6"></div>
         </div>
 
-        <!-- 1. 핸들 관련 튜닝 파츠 -->
+        <!-- 01 Steering -->
         <div class="reveal">
             <div class="flex items-center justify-between mb-12">
                 <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">01</span>Steering Custom</h3>
@@ -207,7 +206,7 @@
             </div>
         </div>
 
-        <!-- 2. 카본 튜닝 파츠 -->
+        <!-- 02 Carbon -->
         <div class="reveal">
             <div class="flex items-center justify-between mb-12">
                 <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">02</span>Carbon Parts</h3>
@@ -222,7 +221,7 @@
             </div>
         </div>
 
-        <!-- 3. 커스텀 튜닝 파츠 (레트로핏) -->
+        <!-- 03 Retrofit -->
         <div class="reveal">
             <div class="flex items-center justify-between mb-12">
                 <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">03</span>Custom Retrofit</h3>
@@ -237,7 +236,7 @@
             </div>
         </div>
 
-        <!-- 4. 단조휠 파츠 -->
+        <!-- 04 Wheels -->
         <div class="reveal">
             <div class="flex items-center justify-between mb-12">
                 <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">04</span>Forged Wheels</h3>
@@ -254,7 +253,7 @@
 
     </section>
 
-    <!-- Process Section (Original) -->
+    <!-- Process Section -->
     <section id="process" class="py-40 bg-zinc-950/50 relative overflow-hidden">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
             <div class="text-center mb-32">
@@ -286,7 +285,7 @@
         </div>
     </section>
 
-    <!-- Footer (Original Layout) -->
+    <!-- Footer -->
     <footer id="contact" class="py-40 bg-black border-t border-white/5">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-12 text-center">
             <h2 class="reveal font-speed text-5xl md:text-[120px] font-black italic tracking-tighter uppercase mb-20">Drive<br><span class="text-emerald-600">Legendary.</span></h2>
@@ -307,7 +306,7 @@
         </div>
     </footer>
 
-    <!-- Gallery Modal (Original) -->
+    <!-- Gallery Modal -->
     <div id="galleryModal">
         <button onclick="closeGallery()" class="absolute top-10 right-10 z-[1100] text-white/50 hover:text-white transition-colors">
             <i class="fas fa-times text-5xl font-light"></i>
@@ -331,7 +330,6 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // 데이터 정의
         const portfolioData = {
             steering: [
                 { id: 's1', tag: 'DRAGONFLY', title: 'Carbon Edition', desc: '벤츠 신형 잠자리 핸들 카본 이식.', img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800' },
@@ -352,7 +350,6 @@
             ]
         };
 
-        // 카드 생성 함수
         function createSlide(item) {
             const savedImg = localStorage.getItem(`gc_img_${item.id}`) || item.img;
             return `
@@ -373,7 +370,6 @@
             `;
         }
 
-        // 이미지 업로드
         function handleImageUpload(event, id) {
             const file = event.target.files[0];
             if (!file) return;
@@ -386,7 +382,6 @@
             reader.readAsDataURL(file);
         }
 
-        // 모달 제어
         function openGallery(id, defaultImg, tag, title, desc) {
             const saved = localStorage.getItem(`gc_img_${id}`) || defaultImg;
             document.getElementById('modalImg').src = saved;
@@ -403,13 +398,11 @@
         }
 
         window.onload = () => {
-            // HTML 렌더링
             document.getElementById('grid-steering').innerHTML = portfolioData.steering.map(createSlide).join('');
             document.getElementById('grid-carbon').innerHTML = portfolioData.carbon.map(createSlide).join('');
             document.getElementById('grid-custom').innerHTML = portfolioData.custom.map(createSlide).join('');
             document.getElementById('grid-wheels').innerHTML = portfolioData.wheels.map(createSlide).join('');
 
-            // Swiper 초기화
             const commonOptions = {
                 slidesPerView: 1.2,
                 spaceBetween: 20,
@@ -425,7 +418,6 @@
             new Swiper('.s3', { ...commonOptions, navigation: { nextEl: '.swiper-next-3', prevEl: '.swiper-prev-3' } });
             new Swiper('.s4', { ...commonOptions, navigation: { nextEl: '.swiper-next-4', prevEl: '.swiper-prev-4' } });
 
-            // ScrollReveal
             ScrollReveal().reveal('.reveal', { 
                 delay: 200, distance: '50px', duration: 1200, origin: 'bottom', interval: 100, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' 
             });
