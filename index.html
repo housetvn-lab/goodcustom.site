@@ -6,6 +6,8 @@
     <title>GOOD CUSTOM | Premium Steering & Bodykit</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Swiper CSS (슬라이드 기능을 위해 추가) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
@@ -54,7 +56,6 @@
         .premium-card:hover {
             background: rgba(255, 255, 255, 0.05);
             border-color: var(--brand-green);
-            transform: translateY(-10px) scale(1.02);
         }
 
         .step-number {
@@ -102,6 +103,25 @@
             backdrop-filter: blur(20px);
         }
 
+        /* Swiper Custom Navigation */
+        .swiper-nav-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .swiper-nav-btn:hover {
+            background: var(--brand-green);
+            border-color: var(--brand-green);
+        }
+        .swiper-pagination-bullet { background: #fff !important; opacity: 0.2; }
+        .swiper-pagination-bullet-active { background: var(--brand-green-light) !important; opacity: 1; }
+
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--brand-green); }
@@ -109,7 +129,7 @@
 </head>
 <body class="antialiased">
 
-    <!-- Navigation -->
+    <!-- Navigation (Original Layout) -->
     <nav class="fixed w-full z-[100] glass-header">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex justify-between items-center h-24">
             <a href="#" class="flex items-center space-x-3 group">
@@ -118,8 +138,7 @@
             
             <div class="hidden lg:flex space-x-12 text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500">
                 <a href="#home" class="hover:text-white transition-colors">Home</a>
-                <a href="#steering" class="hover:text-white transition-colors">Steering</a>
-                <a href="#bodykit" class="hover:text-white transition-colors text-emerald-500">Bodykit</a>
+                <a href="#portfolio" class="hover:text-white transition-colors text-emerald-500">Portfolio</a>
                 <a href="#process" class="hover:text-white transition-colors">Process</a>
                 <a href="#contact" class="hover:text-white transition-colors">Contact</a>
             </div>
@@ -136,7 +155,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Original Layout) -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-10"></div>
@@ -163,42 +182,80 @@
         </div>
     </section>
 
-    <!-- Steering Portfolio Section -->
-    <section id="steering" class="py-40 px-6 lg:px-12 max-w-[1600px] mx-auto">
-        <div class="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
-            <div class="reveal">
-                <span class="font-speed text-emerald-500 tracking-[0.5em] text-xs mb-4 block uppercase">01. Steering Custom</span>
-                <h2 class="font-speed text-5xl md:text-8xl font-black italic tracking-tighter uppercase mb-4">Masterwork</h2>
-                <div class="h-1 w-40 bg-emerald-700"></div>
+    <!-- Integrated Portfolio Section (With Slides) -->
+    <section id="portfolio" class="py-40 px-6 lg:px-12 max-w-[1600px] mx-auto space-y-40">
+        
+        <!-- Section Header -->
+        <div class="reveal mb-10">
+            <span class="font-speed text-emerald-500 tracking-[0.5em] text-xs mb-4 block uppercase">Our Expertise</span>
+            <h2 class="font-speed text-5xl md:text-8xl font-black italic tracking-tighter uppercase">Portfolio</h2>
+            <div class="h-1 w-40 bg-emerald-700 mt-6"></div>
+        </div>
+
+        <!-- 1. 핸들 관련 튜닝 파츠 -->
+        <div class="reveal">
+            <div class="flex items-center justify-between mb-12">
+                <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">01</span>Steering Custom</h3>
+                <div class="flex gap-4">
+                    <div class="swiper-prev-1 swiper-nav-btn"><i class="fas fa-chevron-left"></i></div>
+                    <div class="swiper-next-1 swiper-nav-btn"><i class="fas fa-chevron-right"></i></div>
+                </div>
             </div>
-            <p class="reveal text-zinc-500 max-w-sm text-sm font-light leading-relaxed md:text-right">
-                1,000회 이상의 정밀 커스텀 데이터가 증명하는 굿커스텀의 기술력. 모든 핸들은 오너의 손끝에 최적화됩니다.
-            </p>
+            <div class="swiper s1">
+                <div class="swiper-wrapper" id="grid-steering"></div>
+                <div class="swiper-pagination !static mt-10"></div>
+            </div>
         </div>
-        <div id="steering-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- JS Renders -->
+
+        <!-- 2. 카본 튜닝 파츠 -->
+        <div class="reveal">
+            <div class="flex items-center justify-between mb-12">
+                <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">02</span>Carbon Parts</h3>
+                <div class="flex gap-4">
+                    <div class="swiper-prev-2 swiper-nav-btn"><i class="fas fa-chevron-left"></i></div>
+                    <div class="swiper-next-2 swiper-nav-btn"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+            <div class="swiper s2">
+                <div class="swiper-wrapper" id="grid-carbon"></div>
+                <div class="swiper-pagination !static mt-10"></div>
+            </div>
         </div>
+
+        <!-- 3. 커스텀 튜닝 파츠 (레트로핏) -->
+        <div class="reveal">
+            <div class="flex items-center justify-between mb-12">
+                <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">03</span>Custom Retrofit</h3>
+                <div class="flex gap-4">
+                    <div class="swiper-prev-3 swiper-nav-btn"><i class="fas fa-chevron-left"></i></div>
+                    <div class="swiper-next-3 swiper-nav-btn"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+            <div class="swiper s3">
+                <div class="swiper-wrapper" id="grid-custom"></div>
+                <div class="swiper-pagination !static mt-10"></div>
+            </div>
+        </div>
+
+        <!-- 4. 단조휠 파츠 -->
+        <div class="reveal">
+            <div class="flex items-center justify-between mb-12">
+                <h3 class="font-speed text-2xl md:text-4xl font-bold italic uppercase"><span class="text-emerald-500 mr-4">04</span>Forged Wheels</h3>
+                <div class="flex gap-4">
+                    <div class="swiper-prev-4 swiper-nav-btn"><i class="fas fa-chevron-left"></i></div>
+                    <div class="swiper-next-4 swiper-nav-btn"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+            <div class="swiper s4">
+                <div class="swiper-wrapper" id="grid-wheels"></div>
+                <div class="swiper-pagination !static mt-10"></div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- Bodykit Portfolio Section -->
-    <section id="bodykit" class="py-40 px-6 lg:px-12 max-w-[1600px] mx-auto bg-zinc-950/30 rounded-[3rem]">
-        <div class="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
-            <div class="reveal">
-                <span class="font-speed text-emerald-500 tracking-[0.5em] text-xs mb-4 block uppercase">02. Exterior Bodykit</span>
-                <h2 class="font-speed text-5xl md:text-8xl font-black italic tracking-tighter uppercase mb-4">Retrofit</h2>
-                <div class="h-1 w-40 bg-emerald-700"></div>
-            </div>
-            <p class="reveal text-zinc-500 max-w-sm text-sm font-light leading-relaxed md:text-right">
-                순정 그 이상의 핏감을 완성하는 프리미엄 바디킷. 굿커스텀만의 노하우로 완벽한 단차와 완성도를 보장합니다.
-            </p>
-        </div>
-        <div id="bodykit-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- JS Renders -->
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="process" class="py-40 bg-zinc-950/50 relative overflow-hidden mt-20">
+    <!-- Process Section (Original) -->
+    <section id="process" class="py-40 bg-zinc-950/50 relative overflow-hidden">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
             <div class="text-center mb-32">
                 <span class="reveal font-speed text-emerald-500 tracking-[0.5em] text-xs mb-4 block uppercase">Systematic Flow</span>
@@ -208,7 +265,7 @@
                 <div class="reveal premium-card p-10 rounded-3xl relative">
                     <span class="step-number text-emerald-500">01</span>
                     <h4 class="text-xl font-bold mb-6 text-emerald-500">견적 상담</h4>
-                    <p class="text-zinc-400 font-light leading-relaxed">차종과 원하시는 디자인(핸들, 바디킷 등)을 토대로 상세한 견적을 안내드립니다.</p>
+                    <p class="text-zinc-400 font-light leading-relaxed">차종과 원하시는 디자인을 토대로 상세한 견적을 안내드립니다.</p>
                 </div>
                 <div class="reveal premium-card p-10 rounded-3xl relative">
                     <span class="step-number text-emerald-500">02</span>
@@ -218,18 +275,18 @@
                 <div class="reveal premium-card p-10 rounded-3xl relative">
                     <span class="step-number text-emerald-500">03</span>
                     <h4 class="text-xl font-bold mb-6 text-emerald-500">정밀 시공</h4>
-                    <p class="text-zinc-400 font-light leading-relaxed">숙련된 기술진이 직접 에어백 및 모듈 이식을 포함한 모든 공정을 수행합니다.</p>
+                    <p class="text-zinc-400 font-light leading-relaxed">숙련된 기술진이 직접 모든 공정을 완벽하게 수행합니다.</p>
                 </div>
                 <div class="reveal premium-card p-10 rounded-3xl relative">
                     <span class="step-number text-emerald-500">04</span>
                     <h4 class="text-xl font-bold mb-6 text-emerald-500">최종 검수</h4>
-                    <p class="text-zinc-400 font-light leading-relaxed">기능 작동 여부를 최종 테스트한 후, 오너님께 완벽한 상태로 인도합니다.</p>
+                    <p class="text-zinc-400 font-light leading-relaxed">기능 작동 여부를 테스트한 후 오너님께 인도합니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (Original Layout) -->
     <footer id="contact" class="py-40 bg-black border-t border-white/5">
         <div class="max-w-[1600px] mx-auto px-6 lg:px-12 text-center">
             <h2 class="reveal font-speed text-5xl md:text-[120px] font-black italic tracking-tighter uppercase mb-20">Drive<br><span class="text-emerald-600">Legendary.</span></h2>
@@ -250,7 +307,7 @@
         </div>
     </footer>
 
-    <!-- Gallery Modal -->
+    <!-- Gallery Modal (Original) -->
     <div id="galleryModal">
         <button onclick="closeGallery()" class="absolute top-10 right-10 z-[1100] text-white/50 hover:text-white transition-colors">
             <i class="fas fa-times text-5xl font-light"></i>
@@ -271,124 +328,106 @@
         </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // 1. Steering Data (핸들 포트폴리오)
-        const steeringData = [
-            {
-                id: 'str-1',
-                tag: 'NEW GEN 3',
-                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=80", 
-                category: "Dragonfly Edition",
-                desc: "메르세데스-벤츠 W223 S클래스 스타일 '잠자리' 핸들입니다. 순정 정전식 터치 모듈을 완벽 이식하여 모든 기능을 그대로 유지합니다."
-            },
-            {
-                id: 'str-2',
-                tag: 'AMG PERFORMANCE',
-                image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80",
-                category: "Carbon & LED",
-                desc: "3K 리얼 카본과 상단 LED 인디케이터를 적용하여 다이나믹한 드라이빙 환경을 제공합니다. RPM 및 각종 주행 데이터 확인 가능."
-            },
-            {
-                id: 'str-3',
-                tag: 'BESPOKE LUXURY',
-                image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=1000&q=80",
-                category: "Nappa Leather",
-                desc: "독일제 최상급 나파 가죽을 사용하여 최상의 그립감을 선사합니다. 오너의 취향에 따른 스티치 컬러 커스텀이 가능합니다."
-            }
-        ];
+        // 데이터 정의
+        const portfolioData = {
+            steering: [
+                { id: 's1', tag: 'DRAGONFLY', title: 'Carbon Edition', desc: '벤츠 신형 잠자리 핸들 카본 이식.', img: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800' },
+                { id: 's2', tag: 'LED', title: 'Performance LED', desc: 'RPM 인디케이터 적용 퍼포먼스 핸들.', img: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800' },
+                { id: 's3', tag: 'NAPPA', title: 'Bespoke Leather', desc: '최고급 나파가죽 수제작 커스텀.', img: 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=800' }
+            ],
+            carbon: [
+                { id: 'c1', tag: 'EXTERIOR', title: 'Mirror Covers', desc: '리얼카본 사이드미러 정밀 장착.', img: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=800' },
+                { id: 'c2', tag: 'INTERIOR', title: 'Console Trim', desc: '실내 센터콘솔 카본 트림 시공.', img: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800' }
+            ],
+            custom: [
+                { id: 'r1', tag: 'CONVERSION', title: 'Maybach Look', desc: 'S클래스 마이바흐 룩 완벽 컨버전.', img: 'https://images.unsplash.com/photo-1621359953476-b1645f0d3859?auto=format&fit=crop&w=800' },
+                { id: 'r2', tag: 'LIGHTING', title: 'Active Ambient', desc: '순정 연동 액티브 앰비언트 라이트.', img: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800' }
+            ],
+            wheels: [
+                { id: 'w1', tag: 'FORGED', title: '22" Monoblock', desc: '초경량 단조휠 세팅 및 밸런싱.', img: 'https://images.unsplash.com/photo-1551522435-a13afa10f103?auto=format&fit=crop&w=800' },
+                { id: 'w2', tag: 'CUSTOM', title: 'Gloss Black', desc: '블랙 유광 커스텀 도장 휠.', img: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800' }
+            ]
+        };
 
-        // 2. Bodykit Data (바디킷 포트폴리오)
-        const bodykitData = [
-            {
-                id: 'bk-1',
-                tag: 'GT LOOK',
-                image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80",
-                category: "Panamericana Grill",
-                desc: "벤츠 전면부의 인상을 결정짓는 세로 그릴 교체 작업입니다. 정밀한 단차 맞춤으로 완벽한 순정핏을 지향합니다."
-            },
-            {
-                id: 'bk-2',
-                tag: 'RETROFIT',
-                image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1000&q=80",
-                category: "S-Class AMG Line",
-                desc: "기존 노멀 모델을 신형 AMG 라인으로 완성하는 풀 바디킷 컨버전입니다. 최고의 도장 퀄리티로 시공합니다."
-            }
-        ];
-
-        // 이미지 로드 및 렌더링 함수
-        function renderPortfolio(containerId, data) {
-            const grid = document.getElementById(containerId);
-            if(!grid) return;
-            
-            data.forEach(item => {
-                const savedImg = localStorage.getItem(`gc_img_${item.id}`);
-                const displayImg = savedImg || item.image;
-
-                const card = document.createElement('div');
-                card.className = "premium-card group cursor-pointer reveal relative rounded-3xl overflow-hidden";
-                card.innerHTML = `
-                    <label class="admin-badge" onclick="event.stopPropagation()">
-                        <i class="fas fa-camera mr-2"></i>REPLACE
-                        <input type="file" class="hidden" accept="image/*" onchange="handleImageUpload(event, '${item.id}')">
-                    </label>
-                    <div class="relative overflow-hidden aspect-[4/5] bg-zinc-900" onclick="openGallery('${item.id}')">
-                        <img id="display-${item.id}" src="${displayImg}" class="w-full h-full object-cover transition-all duration-[2s] group-hover:scale-110">
+        // 카드 생성 함수
+        function createSlide(item) {
+            const savedImg = localStorage.getItem(`gc_img_${item.id}`) || item.img;
+            return `
+                <div class="swiper-slide h-auto">
+                    <div class="premium-card group cursor-pointer relative rounded-3xl overflow-hidden aspect-[4/5]" onclick="openGallery('${item.id}', '${item.img}', '${item.tag}', '${item.title}', '${item.desc}')">
+                        <label class="admin-badge" onclick="event.stopPropagation()">
+                            <i class="fas fa-camera mr-2"></i>REPLACE
+                            <input type="file" class="hidden" accept="image/*" onchange="handleImageUpload(event, '${item.id}')">
+                        </label>
+                        <img id="display-${item.id}" src="${savedImg}" class="w-full h-full object-cover transition-all duration-[2s] group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                         <div class="absolute bottom-8 left-8">
                             <span class="font-speed text-emerald-500 text-[9px] tracking-[0.4em] mb-2 block uppercase">${item.tag}</span>
-                            <h3 class="text-3xl font-black font-mont italic uppercase tracking-tighter text-white">${item.category}</h3>
+                            <h3 class="text-3xl font-black font-mont italic uppercase tracking-tighter text-white">${item.title}</h3>
                         </div>
                     </div>
-                `;
-                grid.appendChild(card);
-            });
+                </div>
+            `;
         }
 
-        // 이미지 업로드 핸들러
+        // 이미지 업로드
         function handleImageUpload(event, id) {
             const file = event.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = function(e) {
-                const imageUrl = e.target.result;
-                document.getElementById(`display-${id}`).src = imageUrl;
-                localStorage.setItem(`gc_img_${id}`, imageUrl);
+            reader.onload = (e) => {
+                const url = e.target.result;
+                document.getElementById(`display-${id}`).src = url;
+                localStorage.setItem(`gc_img_${id}`, url);
             };
             reader.readAsDataURL(file);
         }
 
-        // 모달 열기
-        function openGallery(id) {
-            const allData = [...steeringData, ...bodykitData];
-            const data = allData.find(item => item.id === id);
-            const savedImg = localStorage.getItem(`gc_img_${id}`);
-            
-            document.getElementById('modalImg').src = savedImg || data.image;
-            document.getElementById('modalTag').innerText = data.tag;
-            document.getElementById('modalTitle').innerText = data.category;
-            document.getElementById('modalDesc').innerText = data.desc;
+        // 모달 제어
+        function openGallery(id, defaultImg, tag, title, desc) {
+            const saved = localStorage.getItem(`gc_img_${id}`) || defaultImg;
+            document.getElementById('modalImg').src = saved;
+            document.getElementById('modalTag').innerText = tag;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
             document.getElementById('galleryModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
 
-        // 모달 닫기
         function closeGallery() {
             document.getElementById('galleryModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // 초기화
         window.onload = () => {
-            renderPortfolio('steering-grid', steeringData);
-            renderPortfolio('bodykit-grid', bodykitData);
-            
+            // HTML 렌더링
+            document.getElementById('grid-steering').innerHTML = portfolioData.steering.map(createSlide).join('');
+            document.getElementById('grid-carbon').innerHTML = portfolioData.carbon.map(createSlide).join('');
+            document.getElementById('grid-custom').innerHTML = portfolioData.custom.map(createSlide).join('');
+            document.getElementById('grid-wheels').innerHTML = portfolioData.wheels.map(createSlide).join('');
+
+            // Swiper 초기화
+            const commonOptions = {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                breakpoints: {
+                    640: { slidesPerView: 2.2 },
+                    1024: { slidesPerView: 3 }
+                }
+            };
+
+            new Swiper('.s1', { ...commonOptions, navigation: { nextEl: '.swiper-next-1', prevEl: '.swiper-prev-1' } });
+            new Swiper('.s2', { ...commonOptions, navigation: { nextEl: '.swiper-next-2', prevEl: '.swiper-prev-2' } });
+            new Swiper('.s3', { ...commonOptions, navigation: { nextEl: '.swiper-next-3', prevEl: '.swiper-prev-3' } });
+            new Swiper('.s4', { ...commonOptions, navigation: { nextEl: '.swiper-next-4', prevEl: '.swiper-prev-4' } });
+
+            // ScrollReveal
             ScrollReveal().reveal('.reveal', { 
-                delay: 200, 
-                distance: '50px', 
-                duration: 1200, 
-                origin: 'bottom', 
-                interval: 100, 
-                easing: 'cubic-bezier(0.16, 1, 0.3, 1)' 
+                delay: 200, distance: '50px', duration: 1200, origin: 'bottom', interval: 100, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' 
             });
         };
     </script>
